@@ -1,0 +1,21 @@
+# Python program to print a file in reverse
+
+def rec_print_reverse(fd):
+    line=fd.readline()
+    if line =='':
+        return ''
+    else :
+        
+        rec_print_reverse(fd)
+        print(line)
+
+
+
+def main():
+    file_name=eval(input("Enter File to check & Print "))
+    fd=open(file_name)
+    rec_print_reverse(fd)
+
+
+if __name__=='__main__':
+    main()
