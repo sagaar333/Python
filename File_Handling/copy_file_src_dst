@@ -1,0 +1,37 @@
+# Python script to copy no of lines from source file to destination file
+import sys
+
+def copy_lines(input_file,output_file,no_of_line):
+
+    source_file=open(input_file)
+    dest_file=open(output_file,'w')
+    count=1
+    line=source_file.readline()
+
+    while line!='':
+        if count>no_of_line:
+            break
+        else:
+            dest_file.write(line)
+            count+=1
+            line=source_file.readline()
+
+    source_file.close()
+    dest_file.close() 
+
+    
+
+
+
+def main():
+
+    if len(sys.argv)!=4:
+        print("Please enter all details ")
+    else:
+        copy_lines(sys.argv[1],sys.argv[2],int(sys.argv[3]))
+
+
+if __name__=='__main__':
+    main()
+
+    
