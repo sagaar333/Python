@@ -1,0 +1,39 @@
+#python script to print line with minimum length & max length 
+import sys
+import time as tm
+
+    
+def print_small_long_line(filename):
+
+    l1=[]
+    fd=open(filename)
+    line=fd.readline()
+    max=line
+    min=line
+    while line!='':
+        line=fd.readline()
+        if line=='\n' or line=='':
+            
+            continue
+        else:
+            if len(line)>len(max):
+                max=line
+            elif len(line)<len(min):
+                min=line
+        
+    print("Max line :",max)
+    print("Min line :",min)
+
+
+def main():
+    print("\t\tminn and max line program loading..")
+    for x in range(1,81):
+        print(":",end='')
+        tm.sleep(0.02)
+        sys.stdin.flush()
+    filename=eval(input("enter the file name"))
+    print_small_long_line(filename)
+   
+
+if __name__=='__main__':
+    main()
