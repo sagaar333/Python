@@ -1,0 +1,41 @@
+# Python script to read a file and print the line which contains 'The'
+
+
+def print_lines(file_name):
+    fd=open(file_name)
+    line=fd.readline()
+    no=1
+    while line!='':
+        d1=dict_words(line)
+        if 'The' in d1.keys():
+            if d1['The'] >1:
+                print(no, end='  ')
+                print(line)
+        line=fd.readline()
+        no+=1
+        
+
+
+def dict_words(line):
+    d1={}
+    s1=line.split()
+
+    for i in s1:
+        if i in d1.keys():
+            d1[i]+=1
+        else:
+            d1[i]=1
+    return d1
+
+
+    
+
+
+
+def main():
+    file_name=eval(input("Enter File to check & Print "))
+    print_lines(file_name)
+
+
+if __name__=='__main__':
+    main()
