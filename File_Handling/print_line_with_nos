@@ -1,0 +1,24 @@
+# Python script to read a file and print the lines with numbers 
+
+def print_num_from_file():
+    fd=open('C:\\Users\\Sagar M\\Downloads\\plan.txt')
+
+    line=fd.readline()
+
+    while line!='':
+        for s in line:
+            if ord(s) in range(48,57):
+                print(line)
+                break
+        line=fd.readline()
+
+    fd.close()
+
+
+def main():
+    print_num_from_file()
+
+if __name__=='__main__':
+    main()
+    
+    
