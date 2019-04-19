@@ -1,0 +1,22 @@
+# python script to read a file and print it's content
+
+
+def openfile(filename):
+    fd=open(filename)
+    fd1=open('C:\\Users\\Sagar M\\Downloads\\plan_copy.txt','w')
+    if fd != None:
+        line=fd.readline()
+        while line !="":
+            print(line)
+            fd1.write(line)
+            line=fd.readline()
+
+    fd.close()
+    fd1.close()
+
+def main():
+    filename=eval(input("Enter Name of file to Print :"))
+    openfile(filename)
+
+if __name__=='__main__':
+    main()
