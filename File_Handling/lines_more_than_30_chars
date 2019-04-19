@@ -1,0 +1,29 @@
+#Python script to print lines with more than 30 chars
+
+def print_line(filename):
+    fd=open(filename)
+    l=[]
+    if fd!=None:
+        line=fd.readline()
+        count=1
+        while line!="":
+            if len(line)<=30:
+                print(line)
+                line=fd.readline()
+                count+=1
+            else:
+                l.append(count)
+                count+=1
+                line=fd.readline()
+        print("Missing lines more than 30 char : ",l)
+        
+
+
+
+def main():
+    filename=eval(input("enter the file name"))
+    print_line(filename)
+   
+
+if __name__=='__main__':
+    main()
