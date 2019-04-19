@@ -1,0 +1,19 @@
+#Python script to print content of a directory
+import os
+def rec_print_file_content(path):
+    for file in os.listdir(path):
+        #if file !=[]:
+            if os.path.isdir(os.path.join(path,file)):
+                print("Directory File :",file,end='  ')
+                print("Size of file :",os.path.getsize(os.path.join(path,file)))
+                rec_print_file_content(os.path.join(path,file))
+            else :
+                print(file)
+
+
+def main():
+    path=eval(input(" Enter absolute path of dir to check it's content :"))
+    rec_print_file_content(path)
+
+if __name__=='__main__':
+    main()
