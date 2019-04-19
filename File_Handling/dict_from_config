@@ -1,0 +1,61 @@
+import pprint
+def print_conf_file(file_name):
+    fd=open("audio.conf")
+    line=fd.readline()
+    d1={}
+    d2={}
+    current=""
+
+    while line!='':
+        if check_line(line):
+            d1=dict_from_line(line)
+            #print(d1)
+            k=list(d1.keys())
+            v=list(d1.values())
+            
+            
+            if v[0]==None:
+                current=k[0]
+                d2[k[0]]={}
+            else:
+                d2[current][k[0]]=v[0]
+        line=fd.readline()
+    pprint.pprint(d2)
+
+
+
+
+def check_line(line):
+
+    if ':' in line or '=' in line or '[' in line:
+        if not line.startswith('#'):
+            return True
+
+def dict_from_line(line):
+    d1={}
+    s1=[]
+    if '[' in line:
+        d1[line[1:-2]]=None
+    elif ':' in line:
+        s1=line.split(':')
+        s1[1]=s1[:-1]
+        d1[s1[0]]=s1[1]
+    else :
+        s1=line.split('=')
+        s1[1]=s1[1][:-1]
+        d1[s1[0]]=s1[1]
+
+    
+    return d1
+        
+    
+
+
+
+def main():
+    file_name=eval(input("Enter File to check & Print "))
+    print_conf_file(file_name)
+
+
+if __name__=='__main__':
+    main()
