@@ -1,0 +1,43 @@
+# Python script to read emp data from excel sheet and insert the records to Sql database
+
+from Employee import Employee
+import sqlite3
+import openpyxl
+
+conn=sqlite3.connect('employee.db')
+c=conn.cursor()
+
+def fetch_data():
+    wb=openpyxl.load_workbook('names_input.xlsx')
+    ws=wb.active
+    #row=1
+    for i in range(1,ws.max_row):
+        first=ws.cell(row=i,column=1).value
+        last=ws.cell(row=i,column=2).value
+        sal=ws.cell(row=i,column=3).value
+        create_obj(first,last,sal)
+
+def create_obj(first,last,sal):
+    E=Employee(first,last,sal)
+    insert_sql(E)
+
+def insert_sql(E):
+    c.execute("INSERT INTO employees VALUES(:first,:last,:pay)",{'first':E.first,'last':E.last,'pay':E.sal})
+    
+
+def emp():
+    fetch_data()
+    
+
+def main():
+    
+    emp()
+    conn.commit()
+    c.execute("SELECT * FROM employees")
+    res=c.fetchall()
+    for r in res:
+        print(r)
+
+
+if __name__=='__main__':
+    main()
